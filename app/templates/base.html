@@ -1,0 +1,50 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+  Welcome to ASK Beta
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">ASK</a>
+      </div>
+      <ul class="nav navbar-nav">
+       
+        {% if current_user.is_authenticated %}
+
+       <li> <img style="border: 3px solid white; border-radius: 50%; width: 40px; height: 40px; margin-top: 5px;" src="{{ current_user.email | gravatar }}" /></li>
+       <li><a href="{{ url_for('main.user',username=current_user.username) }}">profile</a></li>
+
+        <li><a href="{{ url_for('main.index') }}">Home</a></li>
+        <li><a href="{{ url_for('main.explore') }}">explore</a></li>
+        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        
+        {% elif current_user.is_anonymous %}
+        <li><a href="{{ url_for('auth.login') }}">Login</a></li>        
+        {% endif %}
+        
+      </ul>
+    </div>
+  </nav>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class= "col-md-10">
+        <div class = "row"></div>
+        
+        <div class = "row">{% block app_content %}{% endblock %}</div>
+        <div class = "row"></div>
+      </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+{% endblock %}

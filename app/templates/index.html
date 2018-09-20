@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+{% block app_content %}
+    
+
+    {% if questions %}
+        {% for question in questions  %}
+        <p> question asked to {{question.asked.username}}</p>
+        {% include '_q&a.html' %}
+
+        {% endfor %}
+    {% endif %}
+
+{% endblock %} 

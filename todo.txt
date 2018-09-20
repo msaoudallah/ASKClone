@@ -1,0 +1,9 @@
+- adding profile pic (gravatar)  --------> done
+- explore user -------> done
+- check if duplicated email, username -------> done
+- add follow and unfollow functionality
+- write methods to get followed questions
+- prettify templates :D 
+- deny user asking himeself by changing  url
+- paging 
+- unit testing

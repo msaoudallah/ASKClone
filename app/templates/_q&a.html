@@ -1,0 +1,30 @@
+<div class="container-fluid">
+        <div class="row">
+                <br>
+
+                <div class="col-md-12" style="background-color: rgb(215, 229, 241); border-radius: 10px;">
+                        <h3 class="text-left text-danger">
+                                <div class="col">
+                                        {{ question.body }}
+                                
+                                        <a href="{{url_for('main.user', username=question.asker.username) }}" style="font-size: 10pt; color:darkslategray">
+                                                ({{question.asker.username }})
+                                        </a>
+                                        <p style="color:black; font-size: 8pt">{{ moment(question.timestamp).fromNow() }}</p>
+                                </div>
+
+                        </h3>
+                        <hr>
+                        <p class="text-info">
+                                {% if question.answer != '' %}
+
+                                <p> {{ question.answer }}</p>
+
+                                {% else %}
+                                <a href="{{url_for('main.answer',username=question.asked.username, id = question.id)}}">answer this question</a>
+                                {% endif %}
+                        </p>
+                </div>
+        </div>
+</div>
+<br>

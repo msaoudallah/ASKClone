@@ -1,0 +1,25 @@
+=========
+get questions asker by some user 
+
+fq = Question.query.filter_by(from_user_id=u1.id)
+
+
+get specific user 
+
+u1 = User.query.get(1)
+
+get all questions asked by u1 (u1 is the asker)
+
+u1.asker.all()
+
+get all questions asked to u1
+
+u1.asked.all()
+
+
+clear all tables
+
+db.reflect()
+db.drop_all()
+
+-- you should migrate and update again 

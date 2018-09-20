@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+{% block app_content %}
+   <h1>Hi {{ current_user.username }}!</h1>  
+   <p> {{ user.followers.count() }} Follower </p>
+   <br/>
+    {% if current_user.username != user.username and not current_user.is_following(user) %}
+    <p><a href="{{ url_for('main.follow',username=user.username) }}">Follow</a></p>
+    {% else %}
+    <p><a href="{{ url_for('main.unfollow',username=user.username) }}">Unfollow</a></p>
+    {% endif %}
+
+    <h1>List of questions asked to {{user.username}}</h1>
+    
+    <!-- this check to disable user from asking himeself -->
+    {% if current_user.username != user.username  %}
+    <a href="{{ url_for('main.ask',username=user.username) }}">ask a question</a>
+    {% endif %}
+    {% for question in questions  %}
+    {% include '_q&a.html' %}
+
+    {% endfor %}
+
+{% endblock %} 
